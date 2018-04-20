@@ -29,7 +29,10 @@ input("Press Enter to continue...")
 # TASK 1
 # TODO: Print the first 20 rows using a loop to identify the data.
 print("\n\nTASK 1: Printing the first 20 samples")
-print(data_list[1:21])
+for data in data_list[0:20]:
+    print(data)
+
+
 # Let's change the data_list to remove the header from it.
 data_list = data_list[1:]
 
@@ -51,11 +54,19 @@ input("Press Enter to continue...")
 # TASK 3
 # TODO: Create a function to add the columns(features) of a list in another list in the same order
 def column_to_list(data, index):
-    column_list = []
-    # Tip: You can use a for to iterate over the samples, get the feature by index and append into a list
-    for d in data:
-        column_list.append(d[index])
-    return column_list
+        """
+        Function to add the columns(features) of a list in another list in the same order
+        Args:
+        param1: List
+        param2: Feature index to be added in another list
+        Returns:
+        List of 1 values.
+        """
+        column_list = []
+        # Tip: You can use a for to iterate over the samples, get the feature by index and append into a list
+        for d in data:
+             column_list.append(d[index])
+        return column_list
 
 
 # Let's check with the genders if it's working (only the first 20)
@@ -222,6 +233,13 @@ input("Press Enter to continue...")
 trip_duration_list = column_to_list(data_list, 2)
 
 def stats_min (data_list):
+    """
+        Function returns the smallest value of a columns(features) 
+        Args:
+        param1: List
+        Returns:
+        Int smallest value in a columns(features) 
+    """
     value = 0
     data_list = list(map(int, data_list))
     for data in data_list:
@@ -233,6 +251,13 @@ def stats_min (data_list):
     return value        
 
 def stats_max (data_list):
+    """
+        Function returns the greatest value of a columns(features) 
+        Args:
+        param1: List
+        Returns:
+        Int greatest value in a columns(features) 
+    """
     value = 0
     data_list = list(map(int, data_list))
     for data in data_list:
@@ -244,6 +269,13 @@ def stats_max (data_list):
     return value  
     
 def stats_mean (data_list):
+    """
+        Function returns the mean of a columns(features) 
+        Args:
+        param1: List
+        Returns:
+        Int mean value in a columns(features) 
+    """
     value = 0
     data_list = list(map(int, data_list))
     for data in data_list:
@@ -251,6 +283,13 @@ def stats_mean (data_list):
     return int(round(value / len(data_list),0))
 
 def stats_median(data_list):
+    """
+        Function returns the median value of a columns(features) 
+        Args:
+        param1: List
+        Returns:
+        Int median value in a columns(features) 
+    """
     data_list = list(map(int, data_list))
     quotient, remainder = divmod(len(data_list), 2)
     if remainder:
@@ -291,27 +330,36 @@ input("Press Enter to continue...")
 # TASK 11
 # Go back and make sure you documented your functions. Explain the input, output and what it do. Example:
 # def new_function(param1: int, param2: str) -> list:
-      """
-      Example function with annotations.
-      Args:
+"""
+        Example function with annotations.
+        Args:
           param1: The first parameter.
           param2: The second parameter.
-      Returns:
+        Returns:
           List of X values
 
-      """
+"""
 
 input("Press Enter to continue...")
 # TASK 12 - Challenge! (Optional)
 # TODO: Create a function to count user types without hardcoding the types
 # so we can use this function with a different kind of data.
 print("Will you face it?")
-answer = "no"
+answer = "yes"
 
 def count_items(column_list):
-    item_types = []
-    count_items = []
-    return item_types, count_items
+     """
+      Function counts the number o distinct elements for a given list
+      Args:
+          param1: List of one column
+      Returns:
+          List two list -  one with element names and two with elements counts. 
+     """
+     item_types = list(set(column_list))
+     count_items = []
+     for index, type in enumerate(item_types):
+        count_items.append(column_list.count(type))
+     return item_types, count_items
 
 
 if answer == "yes":
@@ -323,3 +371,4 @@ if answer == "yes":
     assert len(types) == 3, "TASK 11: There are 3 types of gender!"
     assert sum(counts) == 1551505, "TASK 11: Returning wrong result!"
     # -----------------------------------------------------
+
